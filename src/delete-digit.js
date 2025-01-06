@@ -13,8 +13,15 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function deleteDigit(n) {
   const numsArray = n.toString().split("").map(elem => +elem);
-  const minDigitIndex = numsArray.indexOf(Math.min(...numsArray));
-  return +numsArray.filter((elem, index) => index !== minDigitIndex).join('');
+  
+  let maxNumber = 0;
+
+  numsArray.forEach((_, index) => {
+    const temp = +numsArray.filter((val, i) => i !== index).join('');
+    maxNumber = Math.max(maxNumber, temp);
+  })
+
+  return maxNumber;
 }
 
 module.exports = {
